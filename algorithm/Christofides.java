@@ -16,20 +16,17 @@ public class Christofides {
         //Find the minimum spanning tree with Prim's algorithm
         primsAlgorithm(graph);
 
-        System.out.println("We've finished prims");
         //Get the points of odd degree and generate a perfect matching
         Graph oddDegree = new Graph(graph.getOddDegree());
         graph.generatePerfectMatching();
 
         //Merge the perfect matching into the rest of the graph
-        System.out.println("We've got the perfect matching");
         graph.mergeEdges(oddDegree);
         
-        System.out.println("We've merged it in");
         //Generate an Eulerian cycle using the added edges
         Path path = new Path();
         path.generateEulerianCycle(graph);
-        System.out.println("We've got it Eulerian");
+        
         //Convert the Eulerian cycle to a Hamiltonian cycle
         path.convertToHamiltonian();
         System.out.println("The path is "+ path.toString());
